@@ -16,24 +16,19 @@
  *   |/\|    |__|    |  \    |  \    .__)    |  |    |__|    |               ####
  *                                                                             ##
  *
- * AVR library routines for MAX7219 7-segment display driver.
+ * AVR library routines for SPI (serial peripheral interface).
  * Aaron Mavrinac <aaron@logick.ca>
  */
 
-#include <logickavr/spi.h>
+#include <avr/io.h>
 
-// Register Address Map
-#define LW_MAX7219_NOP            0x00
-#define LW_MAX7219_DIGIT0         0x01
-#define LW_MAX7219_DIGIT1         0x02
-#define LW_MAX7219_DIGIT2         0x03
-#define LW_MAX7219_DIGIT3         0x04
-#define LW_MAX7219_DIGIT4         0x05
-#define LW_MAX7219_DIGIT5         0x06
-#define LW_MAX7219_DIGIT6         0x07
-#define LW_MAX7219_DIGIT7         0x08
-#define LW_MAX7219_DECODE         0x09
-#define LW_MAX7219_INTENSITY      0x0A
-#define LW_MAX7219_SCAN_LIMIT     0x0B
-#define LW_MAX7219_SHUTDOWN       0x0C
-#define LW_MAX7219_TEST           0x0F
+/**
+ * Send a byte via SPI.
+ *
+ * data: Byte to send.
+ */
+void lw_spi_sendbyte(char data)
+{
+  SPDR = data;
+  while(!(SPSR & (1 << SPIF)));
+}
