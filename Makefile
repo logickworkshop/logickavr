@@ -10,7 +10,7 @@ CFLAGS= -Os -Wall -mmcu=$(MMCU) -DF_CPU=$(F_CPU) -I/home/aaron/projects/logickav
 BUILDDIR= build
 LIBDIR= lib
 
-COMPONENTS= spi
+COMPONENTS= spi max7219
 
 .PHONY: clean
 

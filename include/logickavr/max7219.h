@@ -23,8 +23,6 @@
 #ifndef LW_MAX7219_H_
 #define LW_MAX7219_H_
 
-#include <logickavr/spi.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -44,6 +42,14 @@ extern "C" {
 #define LW_MAX7219_SCAN_LIMIT     0x0B
 #define LW_MAX7219_SHUTDOWN       0x0C
 #define LW_MAX7219_TEST           0x0F
+
+/**
+ * Write a byte to MAX7219.
+ * 
+ * reg: Register to which to write.
+ * data: Byte to write.
+ */
+void lw_max7219_write(char reg, char data);
 
 #ifdef __cplusplus
 } // extern "C"
