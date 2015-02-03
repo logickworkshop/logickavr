@@ -53,6 +53,45 @@ extern "C" {
 #define LW_MAX7219_CODEB_P        0x0E
 #define LW_MAX7219_CODEB_BLANK    0x0F
 
+// custom font
+#define LW_MAX7219_DP             0x80
+#define LW_MAX7219_0              0x7E
+#define LW_MAX7219_1              0x30
+#define LW_MAX7219_2              0x6D
+#define LW_MAX7219_3              0x79
+#define LW_MAX7219_4              0x33
+#define LW_MAX7219_5              0x5B
+#define LW_MAX7219_6              0x5F
+#define LW_MAX7219_7              0x70
+#define LW_MAX7219_8              0x7F
+#define LW_MAX7219_9              0x7B
+#define LW_MAX7219_A              0x76
+#define LW_MAX7219_B              0x1F
+#define LW_MAX7219_C              0x4E
+#define LW_MAX7219_D              0x3D
+#define LW_MAX7219_E              0x4F
+#define LW_MAX7219_F              0x47
+#define LW_MAX7219_G              0x5E
+#define LW_MAX7219_H              0x17
+#define LW_MAX7219_I              0x10
+#define LW_MAX7219_J              0x3C
+#define LW_MAX7219_K              0x37
+#define LW_MAX7219_L              0x0E
+#define LW_MAX7219_M              0x55
+#define LW_MAX7219_N              0x15
+#define LW_MAX7219_O              0x1D
+#define LW_MAX7219_P              0x67
+#define LW_MAX7219_Q              0x73
+#define LW_MAX7219_R              0x05
+#define LW_MAX7219_S              0x5B
+#define LW_MAX7219_T              0x0F
+#define LW_MAX7219_U              0x3E
+#define LW_MAX7219_V              0x1C
+#define LW_MAX7219_W              0x2B
+#define LW_MAX7219_X              0x89
+#define LW_MAX7219_Y              0x3B
+#define LW_MAX7219_Z              0x6D
+
 // initialization flags
 #define LW_MAX7219_CODEB          0x01
 
