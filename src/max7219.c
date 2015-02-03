@@ -23,7 +23,7 @@
 #include <logickavr/max7219.h>
 #include <logickavr/spi.h>
 
-void lw_max7219_init(char digits, char intensity, char flags)
+void lw_max7219_init(char digits, char intensity, uint8_t flags)
 {
   if(flags & LW_MAX7219_CODEB)
   {

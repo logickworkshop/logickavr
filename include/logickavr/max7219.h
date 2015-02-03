@@ -23,6 +23,8 @@
 #ifndef LW_MAX7219_H_
 #define LW_MAX7219_H_
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,7 +63,7 @@ extern "C" {
  * intensity: LED intensity value.
  * flags: Miscellaneous flags.
  */
-void lw_max7219_init(char digits, char intensity, char flags);
+void lw_max7219_init(char digits, char intensity, uint8_t flags);
 
 /**
  * Write a byte to MAX7219.
