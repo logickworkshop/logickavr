@@ -20,7 +20,14 @@
  * Aaron Mavrinac <aaron@logick.ca>
  */
 
+#ifndef LW_MAX7219_H_
+#define LW_MAX7219_H_
+
 #include <logickavr/spi.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Register Address Map
 #define LW_MAX7219_NOP            0x00
@@ -37,3 +44,9 @@
 #define LW_MAX7219_SCAN_LIMIT     0x0B
 #define LW_MAX7219_SHUTDOWN       0x0C
 #define LW_MAX7219_TEST           0x0F
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
+#endif // LW_MAX7219_H_
