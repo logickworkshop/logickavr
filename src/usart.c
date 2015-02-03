@@ -28,10 +28,10 @@
 void lw_usart_init(uint32_t baudrate)
 {
   // enable rx/tx and interrupts
-  UCSR0B = _BV(RXEN0) | _BV(TXEN0) | _BV(RXCIE0);
+  UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);
 
   // set 8-bit data size
-  UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
+  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
 
   // set baud rate
   lw_usart_setbaud(baudrate);
