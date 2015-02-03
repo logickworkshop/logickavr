@@ -29,6 +29,12 @@
 extern "C" {
 #endif
 
+#ifdef BAUD_TOL
+  #define LW_USART_BAUD_TOL         BAUD_TOL
+#else
+  #define LW_USART_BAUD_TOL         2L
+#endif
+
 /**
  * Initialize USART.
  *
