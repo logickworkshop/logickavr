@@ -24,6 +24,6 @@
 
 void lw_spi_sendbyte(char data)
 {
-    SPDR = data;
-    while(!(SPSR & (1 << SPIF)));
+  SPDR = data;
+  while(!(SPSR & (1 << SPIF)));
 }

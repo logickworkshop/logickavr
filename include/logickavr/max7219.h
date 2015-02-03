@@ -27,7 +27,7 @@
 extern "C" {
 #endif
 
-// Register Address Map
+// register address map
 #define LW_MAX7219_NOP            0x00
 #define LW_MAX7219_DIGIT0         0x01
 #define LW_MAX7219_DIGIT1         0x02
@@ -42,6 +42,18 @@ extern "C" {
 #define LW_MAX7219_SCAN_LIMIT     0x0B
 #define LW_MAX7219_SHUTDOWN       0x0C
 #define LW_MAX7219_TEST           0x0F
+
+// initialization flags
+#define LW_MAX7219_CODEB          0x01
+
+/**
+ * Initialize MAX7219.
+ *
+ * digits: Number of digits to scan.
+ * intensity: LED intensity value.
+ * flags: Miscellaneous flags.
+ */
+void lw_max7219_init(char digits, char intensity, char flags);
 
 /**
  * Write a byte to MAX7219.
