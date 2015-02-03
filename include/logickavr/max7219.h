@@ -43,6 +43,14 @@ extern "C" {
 #define LW_MAX7219_SHUTDOWN       0x0C
 #define LW_MAX7219_TEST           0x0F
 
+// Code B characters
+#define LW_MAX7219_CODEB_NEG      0x0A
+#define LW_MAX7219_CODEB_E        0x0B
+#define LW_MAX7219_CODEB_H        0x0C
+#define LW_MAX7219_CODEB_L        0x0D
+#define LW_MAX7219_CODEB_P        0x0E
+#define LW_MAX7219_CODEB_BLANK    0x0F
+
 // initialization flags
 #define LW_MAX7219_CODEB          0x01
 
