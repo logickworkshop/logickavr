@@ -49,6 +49,20 @@ void lw_usart_init(uint32_t baudrate);
  */
 void lw_usart_setbaud(uint32_t baudrate);
 
+/**
+ * Transmit a byte on USART.
+ *
+ * c: Byte to transmit.
+ */
+void lw_usart_putc(char c);
+
+/**
+ * Receive a byte from USART.
+ *
+ * return: Byte received.
+ */
+char lw_usart_getc(void);
+
 #ifdef __cplusplus
 } // extern "C"
 #endif

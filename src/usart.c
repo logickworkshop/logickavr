@@ -58,3 +58,15 @@ void lw_usart_setbaud(uint32_t baudrate)
   UBRR0L = bauddiv & 0xFF;
   UBRR0H = bauddiv >> 8;
 }
+
+void lw_usart_putc(char c)
+{
+  loop_until_bit_is_set(UCSR0A, UDRE0);
+  UDR0 = c;
+}
+
+char lw_usart_getc(void)
+{
+  loop_until_bit_is_set(UCSR0A, RXC0);
+  return UDR0;
+}
