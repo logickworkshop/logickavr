@@ -27,7 +27,8 @@
 
 void lw_midi_sendmsg(char cmd, ...)
 {
-  // TODO: send byte cmd
+  // send command byte
+  lw_usart_putc(cmd);
 
   va_list ap;
   va_start(ap, cmd);
@@ -41,13 +42,13 @@ void lw_midi_sendmsg(char cmd, ...)
     case LW_MIDI_CMD_CC:
     case LW_MIDI_CMD_PITCH_BEND:
     case LW_MIDI_SYS_SONG_PP:
-      // TODO: send byte (char)va_arg(ap, int)
+      lw_usart_putc((char)va_arg(ap, int));
     // one-argument commands
     case LW_MIDI_CMD_PC:
     case LW_MIDI_CMD_PRESSURE:
     case LW_MIDI_SYS_TC_QF:
     case LW_MIDI_SYS_SONG_SEL:
-      // TODO: send byte (char)va_arg(ap, int)
+      lw_usart_putc((char)va_arg(ap, int));
       break;
   }
 
@@ -63,7 +64,7 @@ void lw_midi_sendsysex(const char * data, size_t n)
 
   for(i = 0; i < n; ++i)
   {
-    // TODO: send byte data[i]
+    lw_usart_putc(data[i]);
   }
 
   // send system exclusive end message
