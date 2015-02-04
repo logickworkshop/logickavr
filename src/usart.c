@@ -56,6 +56,15 @@ void lw_usart_setbaud(uint32_t baudrate)
   UBRR0H = bauddiv >> 8;
 }
 
+void lw_usart_rxi(void)
+{
+  // enable USART receive interrupt
+  UCSR0B |= (1 << RXCIE0);
+
+  // enable global interrupt flag
+  sei();
+}
+
 void lw_usart_putc(char c)
 {
   loop_until_bit_is_set(UCSR0A, UDRE0);

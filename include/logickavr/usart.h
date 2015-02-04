@@ -50,6 +50,11 @@ void lw_usart_init(uint32_t baudrate);
 void lw_usart_setbaud(uint32_t baudrate);
 
 /**
+ * Enable USART receive interrupt.
+ */
+void lw_usart_rxi(void);
+
+/**
  * Transmit a byte on USART.
  *
  * c: Byte to transmit.
