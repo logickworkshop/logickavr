@@ -41,13 +41,13 @@ void lw_midi_sendmsg(char cmd, ...)
     case LW_MIDI_CMD_CC:
     case LW_MIDI_CMD_PITCH_BEND:
     case LW_MIDI_SYS_SONG_PP:
-      // TODO: send byte va_arg(ap, char)
+      // TODO: send byte (char)va_arg(ap, int)
     // one-argument commands
     case LW_MIDI_CMD_PC:
     case LW_MIDI_CMD_PRESSURE:
     case LW_MIDI_SYS_TC_QF:
     case LW_MIDI_SYS_SONG_SEL:
-      // TODO: send byte va_arg(ap, char)
+      // TODO: send byte (char)va_arg(ap, int)
       break;
   }
 
