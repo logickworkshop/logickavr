@@ -10,7 +10,7 @@ CFLAGS= -Os -Wall -mmcu=$(MMCU) -DF_CPU=$(F_CPU) -I/home/aaron/projects/logickav
 BUILDDIR= build
 LIBDIR= lib
 
-COMPONENTS= spi usart midi max7219
+COMPONENTS= spi usart midi max7219 stepper
 
 .PHONY: clean
 
