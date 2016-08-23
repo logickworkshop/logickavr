@@ -28,25 +28,12 @@
 extern "C" {
 #endif
 
-#ifdef BAUD_TOL
-  #define LW_USART_BAUD_TOL         BAUD_TOL
-#else
-  #define LW_USART_BAUD_TOL         2L
-#endif
-
 /**
  * Initialize USART.
  *
  * baudrate: Baud rate.
  */
-void lw_usart_init(uint32_t baudrate);
-
-/**
- * Set USART baud rate.
- *
- * baudrate: Baud rate.
- */
-void lw_usart_setbaud(uint32_t baudrate);
+void lw_usart_init();
 
 /**
  * Enable USART receive interrupt.

@@ -3,10 +3,11 @@ PROJECT= logickavr
 MMCU= atmega168
 F_CPU= 1000000UL
 F_SCL = 100000UL
+BAUD = 9600
 
 AR= avr-ar
 CC= avr-gcc
-CFLAGS= -Os -Wall -mmcu=$(MMCU) -DF_CPU=$(F_CPU) -DF_SCL=$(F_SCL) -I/home/aaron/projects/logickavr/include
+CFLAGS= -Os -Wall -mmcu=$(MMCU) -DF_CPU=$(F_CPU) -DF_SCL=$(F_SCL) -DBAUD=$(BAUD) -I/home/aaron/projects/logickavr/include
 
 BUILDDIR= build
 LIBDIR= lib
