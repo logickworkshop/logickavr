@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -53,6 +53,13 @@ void lw_usart_putc(char c);
  * return: Byte received.
  */
 char lw_usart_getc(void);
+
+/**
+ * Transmit a string on USART.
+ *
+ * s: String to transmit.
+ */
+void lw_usart_puts(const char * s);
 
 #ifdef __cplusplus
 } // extern "C"

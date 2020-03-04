@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -62,4 +62,14 @@ char lw_usart_getc(void)
 {
   loop_until_bit_is_set(UCSR0A, RXC0);
   return UDR0;
+}
+
+void lw_usart_puts(const char * s)
+{
+  uint8_t i = 0;
+  while(s[i])
+  {
+    lw_usart_putc(s[i]);
+    i++;
+  }
 }
