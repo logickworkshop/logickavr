@@ -29,18 +29,6 @@
 extern "C" {
 #endif
 
-#define LW_DS1307_ADDR            0xD0
-
-#define LW_DS1307_SECONDS         0x00
-#define LW_DS1307_MINUTES         0x01
-#define LW_DS1307_HOURS           0x02
-#define LW_DS1307_DAYOFWK         0x03
-#define LW_DS1307_DAYS            0x04
-#define LW_DS1307_MONTHS          0x05
-#define LW_DS1307_YEARS           0x06
-
-#define LW_DS1307_PM              0x40
-
 void lw_ds1307_write_register(uint8_t reg, uint8_t data);
 uint8_t lw_ds1307_read_register(uint8_t reg);
 
