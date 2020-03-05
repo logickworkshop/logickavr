@@ -25,7 +25,7 @@
 
 #define LW_SERVO_PWM_STEP         5.555555555555555
 
-uint8_t lw_servo_pwm(uint8_t port, uint8_t pin, uint8_t angle)
+void lw_servo_pwm(uint8_t port, uint8_t pin, uint8_t angle)
 {
   // output the initial pulse
   port |= (1 << pin);
