@@ -53,7 +53,7 @@ void lw_stepper_init_timer(void)
 int16_t lw_stepper_step(int16_t count, uint8_t delay)
 {
   // set direction
-  if(count < 0)
+  if (count < 0)
   {
     count = -count;
     direction = -1;
@@ -69,7 +69,7 @@ int16_t lw_stepper_step(int16_t count, uint8_t delay)
   // enable stepping interrupts until complete
   steps = 0;
   TIMSK0 |= (1 << OCIE0A);
-  while(steps < count);
+  while (steps < count);
   TIMSK0 &= -(1 << OCIE0A);
 
   return steps * direction;
@@ -82,7 +82,7 @@ void lw_stepper_trapezoid(int16_t count, uint8_t accel)
   uint8_t delay = LW_STEPPER_DELAY_MAX;
   int8_t sign = count < 0 ? -1 : 1;
 
-  if(sign * count > ramp_steps * 2)
+  if (sign * count > ramp_steps * 2)
   {
     // ramp up
     while(trapezoid_steps < ramp_steps)
@@ -98,7 +98,7 @@ void lw_stepper_trapezoid(int16_t count, uint8_t accel)
       sign * lw_stepper_step(sign * (sign * count - ramp_steps * 2), delay);
 
     // ramp down
-    while(trapezoid_steps < sign * count)
+    while (trapezoid_steps < sign * count)
     {
       lw_stepper_step(sign, delay);
       delay += accel;
@@ -107,14 +107,14 @@ void lw_stepper_trapezoid(int16_t count, uint8_t accel)
   }
   else
   {
-    while(trapezoid_steps < sign * count / 2)
+    while (trapezoid_steps < sign * count / 2)
     {
       lw_stepper_step(sign, delay);
       delay -= accel;
       trapezoid_steps++;
     }
     delay += accel;
-    while(trapezoid_steps < sign * count)
+    while (trapezoid_steps < sign * count)
     {
       lw_stepper_step(sign, delay);
       delay += accel;

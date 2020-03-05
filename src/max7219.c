@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -24,7 +24,7 @@
 
 void lw_max7219_init(char digits, char intensity, uint8_t flags)
 {
-  if(flags & LW_MAX7219_CODEB)
+  if (flags & LW_MAX7219_CODEB)
   {
     lw_max7219_write(LW_MAX7219_DECODE, 0xFF);
   }

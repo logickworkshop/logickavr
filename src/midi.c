@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -32,7 +32,7 @@ void lw_midi_sendmsg(char cmd, ...)
   va_list ap;
   va_start(ap, cmd);
 
-  switch((cmd & 0xF0) == 0xF0 ? cmd : cmd & 0xF0)
+  switch ((cmd & 0xF0) == 0xF0 ? cmd : cmd & 0xF0)
   {
     // two-argument commands
     case LW_MIDI_CMD_NOTE_OFF:
@@ -61,7 +61,7 @@ void lw_midi_sendsysex(const char * data, size_t n)
   // send system exclusive start message
   lw_midi_sendmsg(LW_MIDI_SYS_SE_START);
 
-  for(i = 0; i < n; ++i)
+  for (i = 0; i < n; ++i)
   {
     lw_usart_putc(data[i]);
   }

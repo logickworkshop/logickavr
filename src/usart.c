@@ -67,7 +67,7 @@ char lw_usart_getc(void)
 void lw_usart_puts(const char * s)
 {
   uint8_t i = 0;
-  while(s[i])
+  while (s[i])
   {
     lw_usart_putc(s[i]);
     i++;
