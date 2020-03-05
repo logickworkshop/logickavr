@@ -2,8 +2,8 @@ PROJECT= logickavr
 
 MMCU= atmega168
 F_CPU= 8000000UL
-F_SCL = 100000UL
-BAUD = 9600
+F_SCL= 100000UL
+BAUD= 9600
 
 AR= avr-ar
 CC= avr-gcc
@@ -18,17 +18,17 @@ COMPONENTS= spi i2c io usart midi ds1307 max7219 servo stepper
 
 all: $(BUILDDIR) $(LIBDIR) $(LIBDIR)/lib$(PROJECT).a
 
-$(LIBDIR)/liblogickavr.a: $(foreach component,$(COMPONENTS),$(BUILDDIR)/$(component).o)
+$(LIBDIR)/lib$(PROJECT).a: $(foreach component,$(COMPONENTS),$(BUILDDIR)/$(component).o)
 	$(AR) -rcs $@ $^
 	avr-size --common $@
 
 $(BUILDDIR)/%.o: src/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-build:
+$(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
-lib:
+$(LIBDIR):
 	mkdir -p $(LIBDIR)
 
 clean:
