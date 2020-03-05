@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -23,6 +23,9 @@
 #include <avr/interrupt.h>
 
 #include <logickavr/stepper.h>
+
+#define LW_STEPPER_DELAY_MAX 255
+#define LW_STEPPER_DELAY_MIN 8
 
 const uint8_t motor[] = {
   (1 << PB0) | (1 << PB2),
@@ -59,10 +62,10 @@ int16_t lw_stepper_step(int16_t count, uint8_t delay)
   {
     direction = 1;
   }
-  
+
   // set delay
   OCR0A = delay;
-  
+
   // enable stepping interrupts until complete
   steps = 0;
   TIMSK0 |= (1 << OCIE0A);

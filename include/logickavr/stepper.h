@@ -1,6 +1,6 @@
 /*
  * ####                                                ####
- * ####                                                ####        
+ * ####                                                ####
  * ####                                                ####      ##
  * ####                                                ####    ####
  * ####  ############  ############  ####  ##########  ####  ####
@@ -27,9 +27,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#define LW_STEPPER_DELAY_MAX 255
-#define LW_STEPPER_DELAY_MIN 8
 
 /**
  * Initialize timer.
