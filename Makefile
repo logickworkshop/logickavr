@@ -12,7 +12,7 @@ CFLAGS= -Os -Wall -mmcu=$(MMCU) -DF_CPU=$(F_CPU) -DF_SCL=$(F_SCL) -DBAUD=$(BAUD)
 BUILDDIR= build
 LIBDIR= lib
 
-COMPONENTS= spi i2c usart midi ds1307 max7219 stepper
+COMPONENTS= spi i2c io usart midi ds1307 max7219 servo stepper
 
 .PHONY: clean
 
