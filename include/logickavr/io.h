@@ -22,6 +22,8 @@
 #ifndef LW_IO_H_
 #define LW_IO_H_
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
