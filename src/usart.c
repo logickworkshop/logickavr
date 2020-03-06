@@ -25,7 +25,7 @@
 
 #include <logickavr/usart.h>
 
-void lw_usart_init(uint32_t baudrate)
+void lw_usart_init(void)
 {
   // set baud rate
   UBRR0H = UBRRH_VALUE;
@@ -61,7 +61,7 @@ char lw_usart_getc(void)
   return UDR0;
 }
 
-void lw_usart_puts(const char * s)
+void lw_usart_puts(const char s[])
 {
   uint8_t i = 0;
   while (s[i])

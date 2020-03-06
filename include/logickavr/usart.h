@@ -33,7 +33,7 @@ extern "C" {
  *
  * baudrate: Baud rate.
  */
-void lw_usart_init(uint32_t baudrate);
+void lw_usart_init(void);
 
 /**
  * Enable USART receive interrupt.
