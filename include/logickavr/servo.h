@@ -32,7 +32,7 @@ extern "C" {
  * pin: Servo control signal pin.
  * angle: Servo angle in degrees (0 to 180).
  */
-void lw_servo_pwm(uint8_t port, uint8_t pin, uint8_t angle);
+void lw_servo_pwm(volatile uint8_t * port, uint8_t pin, uint8_t angle);
 
 #ifdef __cplusplus
 } // extern "C"

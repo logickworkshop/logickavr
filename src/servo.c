@@ -25,10 +25,10 @@
 
 #define LW_SERVO_PWM_STEP         5.555555555555555
 
-void lw_servo_pwm(uint8_t port, uint8_t pin, uint8_t angle)
+void lw_servo_pwm(volatile uint8_t * port, uint8_t pin, uint8_t angle)
 {
   // output the initial pulse
-  port |= (1 << pin);
+  *port |= (1 << pin);
   _delay_us(1000);
 
   // output the angle PWM
@@ -37,7 +37,7 @@ void lw_servo_pwm(uint8_t port, uint8_t pin, uint8_t angle)
   {
     _delay_us(LW_SERVO_PWM_STEP);
   }
-  port &= ~(1 << pin);
+  *port &= ~(1 << pin);
   while (angle_comp--)
   {
     _delay_us(LW_SERVO_PWM_STEP);
