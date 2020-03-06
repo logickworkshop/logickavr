@@ -32,7 +32,18 @@
 #define LW_DS1307_MONTHS          0x05
 #define LW_DS1307_YEARS           0x06
 
-#define LW_DS1307_PM              0x40
+#define LW_DS1307_AMPM            5
+#define LW_DS1307_24HR            6
+
+uint8_t convert_from(uint8_t data)
+{
+  return 10 * ((data & 0xF0) >> 4) + (data & 0x0F);
+}
+
+uint8_t convert_to(uint8_t data)
+{
+  return ((data / 10) << 4) | (data % 10);
+}
 
 void lw_ds1307_write_register(uint8_t reg, uint8_t data)
 {
@@ -58,39 +69,65 @@ uint8_t lw_ds1307_read_register(uint8_t reg)
 
 void lw_ds1307_get_date(uint8_t * Y, uint8_t * M, uint8_t * D)
 {
-  *Y = lw_ds1307_read_register(LW_DS1307_YEARS);
-  *M = lw_ds1307_read_register(LW_DS1307_MONTHS);
-  *D = lw_ds1307_read_register(LW_DS1307_DAYS);
+  *Y = convert_from(lw_ds1307_read_register(LW_DS1307_YEARS));
+  *M = convert_from(lw_ds1307_read_register(LW_DS1307_MONTHS));
+  *D = convert_from(lw_ds1307_read_register(LW_DS1307_DAYS));
 }
 
-void lw_ds1307_get_time(uint8_t * h, uint8_t * m, uint8_t * s)
+void lw_ds1307_get_time(uint8_t * h, uint8_t * m, uint8_t * s, uint8_t * pm)
 {
-  *h = lw_ds1307_read_register(LW_DS1307_HOURS);
-  *m = lw_ds1307_read_register(LW_DS1307_MINUTES);
-  *s = lw_ds1307_read_register(LW_DS1307_SECONDS);
+  uint8_t h_data;
 
-  if (*h & LW_DS1307_PM)
+  h_data = lw_ds1307_read_register(LW_DS1307_HOURS);
+  *m = convert_from(lw_ds1307_read_register(LW_DS1307_MINUTES));
+  *s = convert_from(lw_ds1307_read_register(LW_DS1307_SECONDS));
+
+  if (h_data & (1 << LW_DS1307_24HR))
   {
-    *h &= 0x1F;
+    *pm = 0;
+    h_data &= 0x3F;
+    *h = convert_from(h_data);
   }
   else
   {
-    *h &= 0x3F;
+    *pm = h_data & (1 << LW_DS1307_AMPM) ? 1 : 0;
+    h_data &= 0x1F;
+    *h = convert_from(h_data);
   }
 }
 
-void lw_ds1307_get_date_time(uint8_t * Y, uint8_t * M, uint8_t * D, uint8_t * h, uint8_t * m, uint8_t * s)
+void lw_ds1307_set_date(uint8_t Y, uint8_t M, uint8_t D)
 {
-  lw_ds1307_get_date(Y, M, D);
-  lw_ds1307_get_time(h, m, s);
+  if (M > 12 || D > 31)
+  {
+    return;
+  }
+
+  lw_ds1307_write_register(LW_DS1307_YEARS, convert_to(Y));
+  lw_ds1307_write_register(LW_DS1307_MONTHS, convert_to(M));
+  lw_ds1307_write_register(LW_DS1307_DAYS, convert_to(D));
 }
 
-void lw_ds1307_set_date_time(uint8_t Y, uint8_t M, uint8_t D, uint8_t h, uint8_t m, uint8_t s)
+void lw_ds1307_set_time_24hr(uint8_t h, uint8_t m, uint8_t s)
 {
-  lw_ds1307_write_register(LW_DS1307_YEARS, Y);
-  lw_ds1307_write_register(LW_DS1307_MONTHS, M);
-  lw_ds1307_write_register(LW_DS1307_DAYS, D);
-  lw_ds1307_write_register(LW_DS1307_HOURS, h);
-  lw_ds1307_write_register(LW_DS1307_MINUTES, m);
-  lw_ds1307_write_register(LW_DS1307_SECONDS, s);
+  if (h > 23 || m > 59 || s > 59)
+  {
+    return;
+  }
+
+  lw_ds1307_write_register(LW_DS1307_HOURS, convert_to(h) | (1 << LW_DS1307_24HR));
+  lw_ds1307_write_register(LW_DS1307_MINUTES, convert_to(m));
+  lw_ds1307_write_register(LW_DS1307_SECONDS, convert_to(s));
+}
+
+void lw_ds1307_set_time_12hr(uint8_t h, uint8_t m, uint8_t s, uint8_t pm)
+{
+  if (h > 12 || m > 59 || s > 59)
+  {
+    return;
+  }
+
+  lw_ds1307_write_register(LW_DS1307_HOURS, convert_to(h) | ((1 & pm) << LW_DS1307_AMPM));
+  lw_ds1307_write_register(LW_DS1307_MINUTES, convert_to(m));
+  lw_ds1307_write_register(LW_DS1307_SECONDS, convert_to(s));
 }
