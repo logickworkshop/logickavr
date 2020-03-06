@@ -47,9 +47,6 @@ void lw_usart_rxi(void)
 {
   // enable USART receive interrupt
   UCSR0B |= (1 << RXCIE0);
-
-  // enable global interrupt flag
-  sei();
 }
 
 void lw_usart_putc(char c)
